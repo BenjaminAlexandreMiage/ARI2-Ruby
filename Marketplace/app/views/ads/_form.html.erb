@@ -1,0 +1,41 @@
+<%= form_with model: ad, local: true, html: { class: "needs-validation", novalidate: true } do |form| %>
+  <div class="container mt-4">
+    <h1 class="text-center mb-4">Créer une annonce</h1>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="mb-3">
+          <%= form.label :title, "Titre", class: "form-label" %>
+          <%= form.text_field :title, class: "form-control", placeholder: "Entrez un titre", required: true %>
+        </div>
+ 
+ 
+        <div class="mb-3">
+          <%= form.label :description, "Description", class: "form-label" %>
+          <%= form.text_area :description, class: "form-control", placeholder: "Entrez une description", required: true %>
+        </div>
+ 
+ 
+        <div class="mb-3">
+          <%= form.label :price, "Prix (€)", class: "form-label" %>
+          <%= form.number_field :price, class: "form-control", step: 0.01, placeholder: "Entrez un prix", required: true %>
+        </div>
+ 
+ 
+        <div class="mb-3">
+          <%= form.label :user_id, "Créateur", class: "form-label" %>
+          <%= form.collection_select :Creator_id, Creator.all, :id, :name, { prompt: "Sélectionnez un créateur" }, { class: "form-select" } %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :image, "Image", class: "form-label" %>
+          <%= form.file_field :image, class: "form-control" %>   
+        </div>
+ 
+ 
+        <div class="text-center">
+          <%= form.submit "Créer", class: "btn btn-primary w-100" %>
+        </div>
+      </div>
+    </div>
+  </div>
+ <% end %> 

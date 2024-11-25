@@ -1,0 +1,27 @@
+<h1><%= @ad.title %></h1>
+
+
+
+
+<p><strong>Description :</strong></p>
+<p><%= @ad.description %></p>
+
+
+<p><strong>Createur :</strong></p>
+<p><%= @ad.creator.name %></p>
+
+
+<p><strong>Prix :</strong> <%= number_to_currency(@ad.price) %></p>
+
+<p><strong>Image :</strong></p>
+<% if @ad.image.attached? %>
+ <%= image_tag @ad.image, style: "max-width: 300px; max-height: 300px;" %>
+<% else %>
+ <p>Aucune image ajoutée.</p>
+<% end %>
+
+<p>
+<%= link_to 'Modifier', edit_ad_path(@ad), class: 'btn btn-warning' %>
+<%= link_to 'Retour à la liste', ads_path, class: 'btn btn-secondary' %>
+<%= link_to 'Supprimer', ad_path(@ad), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: 'btn btn-danger' %>
+</p>

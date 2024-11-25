@@ -1,0 +1,44 @@
+<h1>Liste des Annonces</h1>
+
+
+
+
+<table class="table table-striped table-bordered table-hover">
+<thead>
+  <tr>
+    <th>Titre</th>
+    <th>Image</th>
+    <th>Description</th>
+    <th>Prix</th>
+    <th>Createur</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+<tbody>
+  <% @ads.each do |ad| %>
+    <tr>
+      <td><%= ad.title %></td>
+      <td>
+        <% if ad.image.attached? %>
+          <%= image_tag ad.image, style: "max-width: 300px; max-height: 300px;" %>
+        <% else %>
+          <p>Aucune image ajoutée.</p>
+        <% end %>
+      </td>
+      <td><%= truncate(ad.description, length: 50) %></td>
+      <td><%= number_to_currency(ad.price) %></td>
+      <td><%= ad.creator.name if ad.creator %></td>
+      <td>
+        <%= link_to 'Voir', ad_path(ad), class: 'btn btn-primary'  %> |
+        <%= link_to 'Modifier', edit_ad_path(ad), class:"btn btn-warning" %> |
+        <%= link_to 'Supprimer', ad_path(ad), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class:"btn btn-danger" %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+
+
+
+
+<%= link_to 'Nouvelle Annonce', new_ad_path, class: 'btn btn-primary' %>
